@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Whispers of Love</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=DM+Sans:wght@300;400;500;600&display=swap');
+:root{--pink:#ff5f91;--deep:#d92768;--ink:#92506c;--cream:#fff4ed}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'DM Sans',sans-serif;color:var(--ink);background:#ffe4ee;overflow-x:hidden}
+button{font:inherit;cursor:pointer;border:0}
+.page{min-height:100svh;position:relative;display:flex;align-items:center;justify-content:center;padding:34px 18px;overflow:hidden}
+.hero{background:radial-gradient(ellipse at 50% 48%,#fff2f6 0,#ffd9e7 46%,#ff9cbd 100%)}
+.hero:before,.hero:after{content:"";position:absolute;border:1px solid #ff8db3;opacity:.22;border-radius:50%;width:360px;height:360px;animation:pulse 5s ease-in-out infinite}
+.hero:after{width:500px;height:500px;animation-delay:1.4s}
+@keyframes pulse{50%{transform:scale(1.08);opacity:.42}}
+.topnote{position:absolute;top:8%;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#d887a6}
+.hero-inner{position:relative;z-index:2;text-align:center;max-width:650px}
+.eyebrow{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#d58aa6;margin-bottom:20px}
+.heart{font-size:42px;color:#ff7aa6;display:block;filter:drop-shadow(0 7px 12px #ef6e9a55);animation:heartbeat 2s infinite}
+@keyframes heartbeat{0%,100%{transform:scale(1)}15%{transform:scale(1.14)}30%{transform:scale(1)}45%{transform:scale(1.08)}}
+h1,h2,.script{font-family:'Great Vibes',cursive;font-weight:400}
+h1{font-size:clamp(58px,11vw,100px);line-height:.86;color:#f34f86;margin:14px 0}
+.subtitle{font-size:12px;letter-spacing:.5px;color:#b97691;line-height:1.9}
+.scrollhint{display:inline-flex;align-items:center;gap:10px;margin-top:35px;color:#c57c99;font-size:9px;letter-spacing:2px;text-transform:uppercase;text-decoration:none}
+.scrollhint span{display:inline-block;animation:down 1.5s infinite}
+@keyframes down{50%{transform:translateY(5px)}}
+.petals,.stars{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.petal{position:absolute;top:-30px;width:8px;height:12px;background:#ff7ba4;border-radius:90% 10% 90% 10%;opacity:.6;animation:fall linear infinite}
+@keyframes fall{to{transform:translate3d(var(--drift),110vh,0) rotate(700deg)}}
+.section-title{text-align:center;font-size:clamp(42px,8vw,65px);color:#d95b88;margin:0 0 10px}
+.section-sub{text-align:center;font-size:11px;letter-spacing:1px;color:#b97b91;margin:0 0 28px}
+.garden{background:radial-gradient(circle at 50% 0,#fff1f6,#ffc9dc 72%,#ffa5c4)}
+.bubble{position:absolute;border-radius:50%;background:#ff8ab0;opacity:.15;animation:float 8s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-25px) translateX(10px)}}
+.garden-card{z-index:2;width:min(100%,420px);background:#fffafcdd;border:1px solid #fff;border-radius:15px;padding:26px 22px;text-align:center;box-shadow:0 18px 55px #d94c7d22;backdrop-filter:blur(8px)}
+.garden-card p{font-size:12px;line-height:1.8;color:#a56b83}
+.name-input{width:100%;border:1px solid #f3c3d4;border-radius:8px;padding:13px;background:#fff8fb;color:#9e5875;outline:none;text-align:center}
+.pill{padding:11px 22px;border-radius:99px;background:linear-gradient(120deg,#ff77a2,#ef477e);color:white;box-shadow:0 8px 18px #ee5c8b44;font-size:11px;letter-spacing:.5px;transition:.25s}
+.pill:hover{transform:translateY(-2px);box-shadow:0 12px 22px #ee5c8b55}
+.garden-card .pill{margin-top:12px}
+.notice{font-size:11px;min-height:18px;color:#d44f7f;margin-top:12px}
+.letter{background:linear-gradient(135deg,#fff1d9,#fce4d7 55%,#ffebdf)}
+.letter-wrap{z-index:2;text-align:center;width:min(100%,520px)}
+.envelope{width:130px;height:85px;margin:0 auto 20px;position:relative;background:#ffb6c8;border-radius:5px;box-shadow:0 12px 30px #b97b5b22;cursor:pointer;transition:transform .5s}
+.envelope:before{content:"";position:absolute;top:0;left:0;border-left:65px solid transparent;border-right:65px solid transparent;border-top:48px solid #ff8eaf;transform-origin:top;transition:transform .6s;z-index:2}
+.envelope:after{content:"♡";position:absolute;inset:23px 0 0;font-size:28px;color:white}
+.envelope.open:before{transform:rotateX(180deg)}
+.letter-paper{display:none;background:#fffaf0;border:1px solid #f5d9c3;padding:25px 24px;border-radius:5px;text-align:left;box-shadow:0 12px 35px #a77b5a20;line-height:1.9;font-size:13px;color:#946c62;white-space:pre-wrap}
+.letter-paper.show{display:block;animation:rise .7s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+.memories{background:linear-gradient(135deg,#ffe5ef,#ffd1e0 55%,#ffedf3)}
+.memory-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:620px;margin:auto}
+.memory{background:#fff;padding:8px 8px 16px;box-shadow:0 12px 25px #bf5b7c20;transform:rotate(var(--rot));transition:.3s;cursor:pointer}
+.memory:hover{transform:rotate(0) translateY(-7px) scale(1.03)}
+.memory-art{height:150px;display:grid;place-items:center;font-size:42px;background:linear-gradient(135deg,#ffd2df,#fff0d8)}
+.memory:nth-child(2) .memory-art{background:linear-gradient(135deg,#ffd6e9,#e9d7ff)}
+.memory:nth-child(3) .memory-art{background:linear-gradient(135deg,#ffe0c6,#ffd4e5)}
+.memory small{display:block;text-align:center;margin-top:10px;font-family:'Great Vibes',cursive;font-size:22px;color:#c66b8d}
+.memory-help{text-align:center;font-size:10px;margin-top:20px;color:#b67b93}
+.ending{background:radial-gradient(ellipse at 50% 45%,#ff8bb1,#f64b83 58%,#d92768);color:#fff}
+.ending .section-title{color:white}
+.ending .section-sub{color:#ffe2ec}
+.ending .script{font-size:clamp(36px,8vw,58px);color:white;margin:18px 0}
+.end-copy{max-width:430px;margin:auto;font-size:12px;line-height:2;color:#fff0f5}
+.end-buttons{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:25px}
+.end-buttons button{background:#ffffff25;border:1px solid #ffffff80;color:white;border-radius:99px;padding:11px 15px;font-size:10px;backdrop-filter:blur(5px)}
+.end-buttons button:hover{background:#ffffff45}
+.footer{font-size:9px;letter-spacing:2px;margin-top:34px;opacity:.75;text-transform:uppercase}
+.floating-heart{position:fixed;z-index:20;pointer-events:none;animation:burst 1.8s ease-out forwards;font-size:20px}
+@keyframes burst{from{opacity:1;transform:translateY(0) scale(.5)}to{opacity:0;transform:translateY(-180px) rotate(25deg) scale(1.5)}}
+#toast{position:fixed;z-index:50;bottom:20px;left:50%;transform:translate(-50%,20px);background:#fff8fb;color:#b33d6c;padding:12px 18px;border-radius:99px;box-shadow:0 8px 25px #a32e5c22;font-size:12px;opacity:0;transition:.3s;pointer-events:none}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:520px){.page{padding:28px 16px}.memory-grid{gap:7px}.memory{padding:5px 5px 12px}.memory-art{height:105px;font-size:31px}.memory small{font-size:18px}.garden-card{padding:23px 17px}.topnote{top:6%}}
+</style>
+</head>
+<body>
+<section class="page hero" id="home">
+  <div class="petals" id="petals"></div>
+  <div class="topnote">a little place for us</div>
+  <div class="hero-inner">
+    <div class="eyebrow">made with a little bit of magic</div>
+    <span class="heart">♡</span>
+    <h1>Whispers<br>of Love</h1>
+    <p class="subtitle">Every tiny moment, every quiet thought,<br>all the little things that mean a lot.</p>
+    <a class="scrollhint" href="#garden">begin our little story <span>↓</span></a>
+  </div>
+</section>
+<section class="page garden" id="garden">
+  <div class="petals"></div>
+  <div class="bubble" style="width:190px;height:190px;left:-50px;top:10%"></div>
+  <div class="bubble" style="width:120px;height:120px;right:2%;bottom:12%;animation-delay:2s"></div>
+  <div class="garden-card">
+    <div class="eyebrow">a tiny question for you</div>
+    <h2 class="section-title">Garden of Love</h2>
+    <p>Some things are sweeter when we say them out loud.<br>Tell me the name that makes this little garden bloom.</p>
+    <input class="name-input" id="nameInput" placeholder="Type your name here..." maxlength="35">
+    <button class="pill" onclick="bloom()">Let it bloom ✿</button>
+    <div class="notice" id="gardenNotice"></div>
+  </div>
+</section>
+<section class="page letter" id="letter">
+  <div class="petals"></div>
+  <div class="letter-wrap">
+    <div class="eyebrow">something from my heart</div>
+    <h2 class="section-title">The Love Letter</h2>
+    <p class="section-sub">A little note, written just for you</p>
+    <div class="envelope" id="envelope" onclick="openLetter()" aria-label="Open the letter"></div>
+    <p style="font-size:10px;color:#b98b7a">tap the envelope to open your letter</p>
+    <div class="letter-paper" id="letterPaper">My favourite person,
+
+Sometimes, the simplest moments become the most beautiful memories. A little conversation, a random laugh, or just knowing you're there can make an ordinary day feel special.
+
+If this page could say one thing, it would be this: you matter, your smile matters, and I'm grateful for every little moment we share.
+
+Keep this tiny corner of the internet as a reminder that someone is wishing you warmth, happiness, and all the love your heart can hold.
+
+With a little love, always ♡</div>
+  </div>
+</section>
+<section class="page memories" id="memories">
+  <div class="petals"></div>
+  <div style="width:100%;max-width:700px;z-index:2">
+    <div class="eyebrow" style="text-align:center">little moments, big feelings</div>
+    <h2 class="section-title">Our Memories</h2>
+    <p class="section-sub">Tiny snapshots of a story worth keeping</p>
+    <div class="memory-grid">
+      <div class="memory" style="--rot:-4deg" onclick="memoryTap(this)"><div class="memory-art">🌷</div><small>Little joys</small></div>
+      <div class="memory" style="--rot:3deg" onclick="memoryTap(this)"><div class="memory-art">🧸</div><small>Warm hugs</small></div>
+      <div class="memory" style="--rot:-2deg" onclick="memoryTap(this)"><div class="memory-art">🌙</div><small>Late talks</small></div>
+    </div>
+    <p class="memory-help">Tap a memory to add a little sparkle ✨</p>
+  </div>
+</section>
+<section class="page ending" id="ending">
+  <div class="petals" id="endPetals"></div>
+  <div class="hero-inner">
+    <span class="heart" style="color:white">♥</span>
+    <h2 class="section-title">Whispers of Love</h2>
+    <p class="section-sub">for the one who makes ordinary days feel special</p>
+    <p class="script">You make life a little more lovely.</p>
+    <p class="end-copy">May your days be soft, your heart be light, and may you always find a reason to smile. This little page is a tiny reminder that beautiful things can live in the smallest moments.</p>
+    <div class="end-buttons">
+      <button onclick="makeHearts()">♡ Send some love</button>
+      <button onclick="document.querySelector('#letter').scrollIntoView({behavior:'smooth'})">✉ Read the letter again</button>
+      <button onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Start again</button>
+    </div>
+    <div class="footer">made with love, just for you</div>
+  </div>
+</section>
+<div id="toast"></div>
+<script>
+const petalContainers=document.querySelectorAll('.page .petals');
+petalContainers.forEach((container,idx)=>{
+  for(let i=0;i<(idx?25:35);i++){
+    const p=document.createElement('i');p.className='petal';
+    p.style.left=Math.random()*100+'%';p.style.animationDuration=(7+Math.random()*10)+'s';
+    p.style.animationDelay=(-Math.random()*15)+'s';p.style.setProperty('--drift',(Math.random()*160-80)+'px');
+    p.style.opacity=(.18+Math.random()*.45);p.style.transform='scale('+(0.5+Math.random()*1.3)+')';
+    container.appendChild(p);
+  }
+});
+function bloom(){
+  const name=document.getElementById('nameInput').value.trim();
+  const notice=document.getElementById('gardenNotice');
+  if(!name){notice.textContent='Add a name first, then watch the magic ✿';return}
+  notice.textContent='For '+name+', with a little extra love ♡';
+  for(let i=0;i<18;i++)setTimeout(()=>heartAt(window.innerWidth*(.2+Math.random()*.6),window.innerHeight*(.3+Math.random()*.4)),i*55);
+  toast('A little garden has bloomed for '+name+' ✿');
+  setTimeout(()=>document.getElementById('letter').scrollIntoView({behavior:'smooth'}),900);
+}
+function openLetter(){
+  document.getElementById('envelope').classList.add('open');
+  document.getElementById('letterPaper').classList.add('show');
+  setTimeout(()=>document.getElementById('letterPaper').scrollIntoView({behavior:'smooth',block:'nearest'}),150);
+}
+function heartAt(x,y){
+  const h=document.createElement('span');h.className='floating-heart';h.textContent=['♥','♡','💕','✿'][Math.floor(Math.random()*4)];
+  h.style.left=x+'px';h.style.top=y+'px';h.style.color=['#ff4f8a','#e83f79','#ff9fbd','#fff'][Math.floor(Math.random()*4)];
+  document.body.appendChild(h);setTimeout(()=>h.remove(),1900);
+}
+function makeHearts(){for(let i=0;i<32;i++)setTimeout(()=>heartAt(Math.random()*innerWidth,innerHeight*(.45+Math.random()*.5)),i*45);toast('Sending you a little cloud of love ♡')}
+function memoryTap(el){el.animate([{transform:'scale(1) rotate(0)'},{transform:'scale(1.09) rotate(0)'},{transform:'scale(1) rotate(0)'}],{duration:450});const r=el.getBoundingClientRect();for(let i=0;i<7;i++)heartAt(r.left+Math.random()*r.width,r.top+Math.random()*r.height)}
+let toastTimer;
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2600)}
+</script>
+</body>
+</html>
